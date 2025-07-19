@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 const app = express();
 import {createRoomSchema, userSchema, signInSchema} from "@repo/common";
 import { JWT_SECRET } from "@repo/backend_common/config"
+import { auth } from "./middleware";
 const bcrypt = require("bcrpyt")
 app.use(express.json())
 
@@ -30,7 +31,7 @@ app.post("/signin",async (req:Request, res:Response)=>{
   return;
 })
 
-app.post("/room",async (req:Request, res:Response)=>{
+app.post("/room", auth ,async (req:Request, res:Response)=>{
   const body = createRoomSchema.safeParse(req.body);
   if(!body.success){
     res.json({
