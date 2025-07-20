@@ -27,6 +27,7 @@
   ],
   "dependencies": {
     "@types/bcrypt": "^5.0.2",
-    "bcrypt": "^6.0.0"
+    "bcrypt": "^6.0.0",
+    "update": "^0.4.2"
   }
 }

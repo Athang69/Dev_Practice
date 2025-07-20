@@ -12,9 +12,10 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@repo/backend_common": "*",
     "@repo/common": "*",
-    "@repo/typescript-config": "*",
-    "@repo/backend_common":"*"
+    "@repo/db": "*",
+    "@repo/typescript-config": "*"
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.2",

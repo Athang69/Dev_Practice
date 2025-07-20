@@ -1,8 +1,12 @@
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  provider     = "prisma-client-js"
+  output       = "../generated/prisma/client"
+  moduleFormat = "esm" // ✅ correct way to set ESM output
+  previewFeatures = ["fullTextSearchPostgres"] // optional and must be valid
 }
+
+
 
 datasource db {
   provider = "postgresql"
@@ -11,11 +15,11 @@ datasource db {
 
 model User{
   id        String    @id @default(uuid())
-  email     String  
+  email     String    @unique
   password  String
   username  String
-  name      String
-  avatar    String
+  name      String?
+  avatar    String?
   user      Room[]
   chats     Chat[]
 }
