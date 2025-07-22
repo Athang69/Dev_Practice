@@ -1,6 +1,6 @@
 import { JWT_SECRET } from "@repo/backend_common/config";
 import { NextFunction, Request, Response } from "express";
-import jwt, { JsonWebTokenError } from "jsonwebtoken";
+import jwt, { JsonWebTokenError, JwtPayload } from "jsonwebtoken";
 
 declare global {
   namespace Express{
@@ -12,9 +12,8 @@ declare global {
 
 export function auth(req:Request, res:Response, next:NextFunction){
   const token = req.headers['authorization'] ?? "";
-  const decodedData = jwt.verify(token,JWT_SECRET)
+  const decodedData:any = jwt.verify(token,JWT_SECRET)
   if(decodedData){
-    //@ts-ignore
     req.userId = decodedData.userId;
     next();
   }
