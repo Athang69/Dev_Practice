@@ -14,7 +14,7 @@ export function auth(req:Request, res:Response, next:NextFunction){
   const token = req.headers['authorization'] ?? "";
   const decodedData:any = jwt.verify(token,JWT_SECRET)
   if(decodedData){
-    req.userId = decodedData.userId;
+    req.userId = decodedData.id;
     next();
   }
   else{

@@ -84,7 +84,7 @@ app.post("/signin",async (req:Request, res:Response)=>{
         id:user.id.toString()
       },JWT_SECRET)
 
-      res.status(400).json({
+      res.json({
       token:token
     })
     }
@@ -95,23 +95,35 @@ app.post("/signin",async (req:Request, res:Response)=>{
     }
 })
 
-// app.post("/room", auth ,async (req:Request, res:Response)=>{
-//   const parsedBody = createRoomSchema.safeParse(req.body);
-//   if(!parsedBody.success){
-//     res.json({
-//       message:"Invalid inputs"
-//     })
-//   return;
-//   }
-//   const userId = req.userId
-//   try{
-//     const room = await prismaClient.room.create({
-//       data:{
-//         slug:parsedBody.data.
-//       }
-//     })
-//   }
+app.post("/room", auth ,async (req:Request, res:Response)=>{
+  const parsedBody = createRoomSchema.safeParse(req.body);
+  if(!parsedBody.success){
+    res.json({
+      message:"Invalid inputs"
+    })
+    return;
+  }
+  const userId = req.userId
+  try{
+    const room = await prismaClient.room.create({
+      // @ts-ignore
+      data:{
+        slug:parsedBody.data.roomId,
+        adminId:userId
+      }
+    })
+    res.json({
+      message:"Room created successfully",
+      roomId:room.slug
+    })
+  }
+  catch(e){
+    res.status(404).json({
+      message:"Room already exists with this ID"
+    })
+    return;
+  }
 
-// })
+})
 
 app.listen(3002)
