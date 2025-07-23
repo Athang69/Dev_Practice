@@ -13,7 +13,8 @@
   "description": "",
   "devDependencies": {
     "@repo/typescript-config": "*",
-    "@repo/backend_common":"*"
+    "@repo/backend_common":"*",
+    "@repo/db":"*"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.10",
