@@ -24,6 +24,7 @@ function checkUser(token: string): string | null {
     if (!decoded || !decoded.id) {
       return null;
     }
+    console.log(decoded)
 
     return decoded.id;
   } catch(e) {
@@ -60,6 +61,7 @@ wss.on('connection',function connection(ws,request)
           slug:parsedData.roomId
         }
       })
+      console.log(room_chk)
       if(!room_chk){
         return
       }

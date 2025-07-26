@@ -114,7 +114,7 @@ app.post("/room", auth ,async (req:Request, res:Response)=>{
     })
     res.json({
       message:"Room created successfully",
-      roomId:room.slug
+      roomId:room.id
     })
   }
   catch(e){
@@ -128,6 +128,7 @@ app.post("/room", auth ,async (req:Request, res:Response)=>{
 
 app.get("/chats/:roomId",async (req:Request,res:Response)=>{
   const roomId = Number(req.params.roomId);
+  try{
   const messages = await prismaClient.chat.findMany({
     where:{
       roomId:roomId
@@ -141,6 +142,30 @@ app.get("/chats/:roomId",async (req:Request,res:Response)=>{
   res.json({
     messages
   })
+}
+  catch(e){
+    res.json("Entered roomID is invalid")
+  }
 })
 
-app.listen(3002)
+app.get("/room/:slug",async(req:Request, res:Response)=>{
+  const slug = req.params.slug;
+  const room = await prismaClient.room.findFirst({
+    where:{
+      slug
+    }
+  })
+  if(!room){
+    res.json({
+      message:"Room not found"
+    })
+  }else{
+    const roomId = room.id
+      res.json({
+      roomId
+    })
+  }
+
+})
+
+app.listen(3003)
