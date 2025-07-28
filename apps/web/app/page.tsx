@@ -80,26 +80,6 @@ function App() {
     }
   ];
 
-  const testimonials = [
-    {
-      name: "Athang Kali",
-      role: "Developer",
-      content: "This platform was my first ever full stack project",
-      avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
-    },
-    {
-      name: "Dr. Michael Roberts",
-      role: "University Professor",
-      content: "The collaboration features are incredible. My research team can work together from anywhere in the world.",
-      avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
-    },
-    {
-      name: "Emma Thompson",
-      role: "Design Educator",
-      content: "Finally, a tool that understands the needs of educators. The interface is intuitive and powerful.",
-      avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -112,6 +92,7 @@ function App() {
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
                 <Palette className="w-5 h-5 text-white" />
+                {/* <img src={"https://static.thenounproject.com/png/7309741-512.png"} /> */}
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
                 TeachBoard
@@ -121,10 +102,11 @@ function App() {
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-gray-600 hover:text-purple-600 transition-colors">Features</a>
               <a href="#how-it-works" className="text-gray-600 hover:text-purple-600 transition-colors">How it Works</a>
-              <a href="#testimonials" className="text-gray-600 hover:text-purple-600 transition-colors">Testimonials</a>
-              <button className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                Get Started Free
-              </button>
+              <Link href={"/signup"}>
+                <button className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                  Get Started Free
+                </button>
+              </Link>
             </div>
 
             <button 
@@ -157,7 +139,7 @@ function App() {
           <div className="text-center">
             <div className="inline-flex items-center bg-purple-50 rounded-full px-4 py-2 mb-8">
               <Zap className="w-4 h-4 text-purple-600 mr-2" />
-              <span className="text-purple-600 font-medium text-sm">Now with AI-powered features</span>
+              <span className="text-purple-600 font-medium text-sm">Stil Under Development</span>
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
@@ -170,7 +152,6 @@ function App() {
             
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
               Create, collaborate, and teach with the most intuitive whiteboard platform. 
-              Designed by educators, for educators. Join thousands of teachers worldwide.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
@@ -189,20 +170,7 @@ function App() {
             </div>
 
             {/* Stats */}
-            <div className="flex flex-wrap justify-center gap-8 text-center">
-              <div>
-                <div className="text-3xl font-bold text-gray-900">50K+</div>
-                <div className="text-gray-600">Active Teachers</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-gray-900">2M+</div>
-                <div className="text-gray-600">Students Reached</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-gray-900">99.9%</div>
-                <div className="text-gray-600">Uptime</div>
-              </div>
-            </div>
+          
           </div>
         </div>
 
@@ -286,84 +254,6 @@ function App() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section id="testimonials" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Loved by Educators Worldwide
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Join thousands of teachers who have transformed their teaching experience with TeachBoard.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300">
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  "{testimonial.content}"
-                </p>
-                <div className="flex items-center">
-                  <img 
-                    src={testimonial.avatar} 
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full mr-4"
-                  />
-                  <div>
-                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                    <div className="text-gray-600 text-sm">{testimonial.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Ready to Transform Your Teaching?
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join thousands of educators who are already creating amazing learning experiences. 
-            Start your free trial today - no credit card required.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center">
-              Start Free Trial
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </button>
-            <button className="border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300">
-              Schedule Demo
-            </button>
-          </div>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-6 text-white/80 text-sm">
-            <div className="flex items-center">
-              <Check className="w-4 h-4 mr-2" />
-              14-day free trial
-            </div>
-            <div className="flex items-center">
-              <Check className="w-4 h-4 mr-2" />
-              No credit card required
-            </div>
-            <div className="flex items-center">
-              <Check className="w-4 h-4 mr-2" />
-              Cancel anytime
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -412,7 +302,7 @@ function App() {
           </div>
           
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 TeachBoard. All rights reserved.</p>
+            <p>Made By Athang_OP</p>
           </div>
         </div>
       </footer>
