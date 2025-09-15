@@ -8,6 +8,9 @@
     "check-types": "turbo run check-types",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
+  "exports":{
+    "./module":"./node_modules/@excalidraw"
+  },
   "devDependencies": {
     "@types/node": "^24.0.14",
     "prettier": "^3.6.0",
@@ -26,8 +29,11 @@
     "packages/*"
   ],
   "dependencies": {
+    "@excalidraw/excalidraw": "^0.18.0",
     "@types/bcrypt": "^5.0.2",
     "bcrypt": "^6.0.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "update": "^0.4.2"
   }
 }

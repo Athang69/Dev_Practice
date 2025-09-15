@@ -4,12 +4,18 @@ import {createRoomSchema, userSchema, signInSchema} from "@repo/common";
 import { JWT_SECRET } from "@repo/backend_common/config"
 import { auth } from "./middleware";
 import prismaClient  from "@repo/db/client"
-import { error } from "console";
 import bcrypt from "bcrypt"
 import * as jwt from "jsonwebtoken"
+import cors from "cors"
 
-
+app.use(cors())
 app.use(express.json())
+
+app.get("/test123",(req:Request,res:Response)=>{
+  res.json({
+    message:"Hii there the API is working"
+  })
+})
 
 app.post("/signup",async (req:Request,res:Response)=>{
   const parsedBody = userSchema.safeParse(req.body)
@@ -129,6 +135,8 @@ app.post("/room", auth ,async (req:Request, res:Response)=>{
 app.get("/chats/:roomId",async (req:Request,res:Response)=>{
   const roomId = Number(req.params.roomId);
   try{
+  const roomId = Number(req.params.roomId)
+  console.log(req.params.roomId)
   const messages = await prismaClient.chat.findMany({
     where:{
       roomId:roomId
@@ -144,7 +152,10 @@ app.get("/chats/:roomId",async (req:Request,res:Response)=>{
   })
 }
   catch(e){
-    res.json("Entered roomID is invalid")
+    console.log(e)
+    res.json({
+      messages:[]
+    })
   }
 })
 
